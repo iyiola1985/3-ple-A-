@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fdfdfd;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8em;
+      margin: 30px 0 10px;
+      color: #2c3e50;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px 5%;
+      box-sizing: border-box;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      animation: zoomIn 0.4s ease;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes zoomIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Back Button */
+    .back-button {
+      display: inline-block;
+      margin: 0 auto 30px;
+      text-align: center;
+      display: block;
+    }
+
+    .back-button a {
+      text-decoration: none;
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button a:hover {
+      background-color: #34495e;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📸 Memories Gallery</h1>
+
+  <div class="back-button">
+    <a href="index.html">← Back to Home</a>
+  </div>
+
+  <div class="gallery">
+    <img src="friends 1.jpeg" alt="Gallery Image 1">
+    <img src="friends 2.jpeg" alt="Gallery Image 2">
+    <img src="friends 3.jpeg" alt="Gallery Image 3">
+    <img src="husband and wife pic 1.jpeg" alt="Gallery Image 4">
+    <img src="husband pic.jpeg" alt="Gallery Image 5">
+    <img src="wife pic 2.jpeg" alt="Gallery Image 6">
+    <img src="the wife pic 1.jpeg" alt="Gallery Image 7">
+    <img src="smile 1.jpeg" alt="Gallery Image 8">
+    <img src="smile 2.jpeg" alt="Gallery Image 9">
+    <img src="smile 3.jpeg" alt="Gallery Image 10">
+    <img src="smile 4.jpeg" alt="Gallery Image 11">
+    <img src="couple 1.jpeg" alt="Gallery Image 12">
+    <img src="couple 2.jpeg" alt="Gallery Image 13">
+    <img src="advert ay pic 2.jpeg" alt="Gallery Image 14">
+    <img src="advert ay pic 4.jpeg" alt="Gallery Image 15">
+    <img src="a wish.jpeg" alt="Gallery Image 15">
+    <!-- Continue adding up to 50 images -->
+  </div>
+
+  <!-- Lightbox container -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Expanded View">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.style.animation = 'none';
+        void lightboxImg.offsetWidth;
+        lightboxImg.style.animation = 'zoomIn 0.4s ease';
+        lightbox.classList.add('show');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('show');
+      lightboxImg.src = '';
+    }
+  </script>
+
+</body>
+</html>
